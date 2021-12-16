@@ -15,8 +15,10 @@ import {
   MdSearch,
   MdLibraryMusic,
   MdPlaylistAdd,
-  MdFavourite,
+  MdFavorite
 } from "react-icons/md";
+
+import { MenuItem } from "./menuItem";
 
 const navMenu = [
   {
@@ -36,6 +38,19 @@ const navMenu = [
   },
 ];
 
+const musicMenu = [
+  {
+    name: "Create Playlist",
+    icon: MdPlaylistAdd,
+    route: "/",
+  },
+  {
+    name: "Favourites",
+    icon: MdFavorite,
+    route: "/favourite",
+  },
+];
+
 const Sidebar = () => {
   return (
     <Box
@@ -52,7 +67,28 @@ const Sidebar = () => {
         <Box marginBottom="20px">
           <List space={2}>
             {navMenu.map((menu) => (
-              <ListItem paddingX="20px" fontSize="16px" Key={menu.name}>
+              <ListItem paddingX="20px" fontSize="16px" key={menu.name}>
+                <LinkBox>
+                  <NextLink href={menu.route} passHref>
+                    <LinkOverlay>
+                      <ListIcon
+                        as={menu.icon}
+                        color="white"
+                        marginRight="20px"
+                      />
+                      {menu.name}
+                    </LinkOverlay>
+                  </NextLink>
+                </LinkBox>
+              </ListItem>
+            ))}
+          </List>
+        </Box>
+        <Divider marginBottom="20px" color="gray.800"/>
+        <Box marginBottom="20px">
+          <List space={2}>
+            {musicMenu.map((menu) => (
+              <ListItem paddingX="20px" fontSize="16px" key={menu.name}>
                 <LinkBox>
                   <NextLink href={menu.route} passHref>
                     <LinkOverlay>
