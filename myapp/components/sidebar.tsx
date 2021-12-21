@@ -1,4 +1,3 @@
-import { NextImage } from "next/image";
 import NextLink from "next/link";
 import {
   Box,
@@ -6,7 +5,6 @@ import {
   ListItem,
   ListIcon,
   Divider,
-  Center,
   LinkBox,
   LinkOverlay,
 } from "@chakra-ui/layout";
@@ -15,10 +13,8 @@ import {
   MdSearch,
   MdLibraryMusic,
   MdPlaylistAdd,
-  MdFavorite
+  MdFavorite,
 } from "react-icons/md";
-
-import { MenuItem } from "./menuItem";
 
 const navMenu = [
   {
@@ -51,6 +47,8 @@ const musicMenu = [
   },
 ];
 
+const playlist = new Array(30).fill(1).map((_, i) => `Playlist ${i + 1}`);
+
 const Sidebar = () => {
   return (
     <Box
@@ -60,7 +58,7 @@ const Sidebar = () => {
       paddingX="25px"
       color="gray"
     >
-      <Box paddingY="10px">
+      <Box paddingY="10px" height="100%">
         <Box width="120px" marginBottom="20px" paddingY="20px">
           <img src="/react-code.jpeg" height={60} width={60} alt="logo" />
         </Box>
@@ -84,7 +82,7 @@ const Sidebar = () => {
             ))}
           </List>
         </Box>
-        <Divider marginBottom="20px" color="gray.800"/>
+        <Divider marginBottom="20px" color="gray.800" />
         <Box marginBottom="20px">
           <List space={2}>
             {musicMenu.map((menu) => (
@@ -99,6 +97,21 @@ const Sidebar = () => {
                       />
                       {menu.name}
                     </LinkOverlay>
+                  </NextLink>
+                </LinkBox>
+              </ListItem>
+            ))}
+          </List>
+        </Box>
+        <Box marginTop="20px"></Box>
+        <Divider color="gray.800" />
+        <Box height="66%" overflowY="auto" paddingY="20px">
+          <List spaceing={2}>
+            {playlist.map((list) => (
+              <ListItem paddingX="20px" key={list}>
+                <LinkBox>
+                  <NextLink href="/" passHref>
+                    <LinkOverlay>{list}</LinkOverlay>
                   </NextLink>
                 </LinkBox>
               </ListItem>
